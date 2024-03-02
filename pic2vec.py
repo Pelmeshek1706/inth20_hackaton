@@ -8,8 +8,8 @@ from tqdm import tqdm
 
 from argparse import ArgumentParser
 
-def main():
 
+def main():
     parser = ArgumentParser(description="generate vector embeddings")
 
     parser.add_argument('--image_folder',
@@ -48,7 +48,6 @@ def main():
                 img = image.load_img(image_path, target_size=(224, 224))
                 x = image.img_to_array(img)
                 x = np.expand_dims(x, axis=0)
-                # x = utils.preprocess_input(x, version=2)  # Optional preprocessing (uncomment if needed)
             except Exception as e:
                 print(f"Error processing image: {image_path}. Skipping.")
                 continue
@@ -62,7 +61,7 @@ def main():
             # Write filename and features string to CSV
             writer.writerow([filename, features_string])
 
-    print(f"Image features extracted and saved to: {csv_file}")
 
 if __name__ == "__main__":
     main()
+    
