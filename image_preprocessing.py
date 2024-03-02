@@ -49,9 +49,9 @@ def _save_picture(image, filename):
     :param filename:
     :return:
     """
-    if not os.path.exists("kek"):
-        os.makedirs("kek")
-    cv2.imwrite(os.path.join('kek', filename), image)
+    if not os.path.exists("temp"):
+        os.makedirs("temp")
+    cv2.imwrite(os.path.join('temp', filename), image)
 
 
 def _check_image_size(image_path):
