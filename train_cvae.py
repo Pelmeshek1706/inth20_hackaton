@@ -49,6 +49,7 @@ def train(model, optimizer, n_epochs, n_classes, train_loader, device):
 
 def main():
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print(f"Training on {device}")
 
     parser = ArgumentParser()
     parser.add_argument('--image_path', type=str)
@@ -69,7 +70,8 @@ def main():
     model = ConditionalVAE(in_channels=3,
                            num_classes=args.num_classes,
                            latent_dim=128,
-                           img_size=args.image_size)
+                           img_size=args.image_size,
+                           device=device)
     optimizer = Adam(model.parameters(), lr=3e-4)
 
     train(model=model,
