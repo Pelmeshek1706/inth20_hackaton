@@ -11,8 +11,10 @@ class ConditionalVAE(nn.Module):
                  num_classes: int,
                  latent_dim: int,
                  hidden_dims: List = None,
-                 img_size: int = 224) -> None:
+                 img_size: int = 224,
+                 device: str = 'cpu') -> None:
         super(ConditionalVAE, self).__init__()
+        self.device = device
 
         input_channels = in_channels
 
@@ -154,7 +156,7 @@ class ConditionalVAE(nn.Module):
         loss = recons_loss + kld_weight * kld_loss
         return loss
 
-    def generate(self, label: int) -> torch.Tensor:
+    def generate(self, label: int, device) -> torch.Tensor:
         """
         Generate an average image given class label
 
@@ -164,6 +166,7 @@ class ConditionalVAE(nn.Module):
         label = one_hot_labels([label], num_classes=self.num_classes)
 
         z = torch.zeros(1, self.latent_dim)
+        z = z.to(device)
 
         z = torch.cat([z, label], dim=1)
         generated_image = self.decode(z)

@@ -10,7 +10,7 @@ import os
 from argparse import ArgumentParser
 
 
-def train(model, optimizer, n_epochs, n_classes, train_loader):
+def train(model, optimizer, n_epochs, n_classes, train_loader, device):
     if not os.path.exists('weights'):
         os.mkdir('weights')
 
@@ -21,6 +21,8 @@ def train(model, optimizer, n_epochs, n_classes, train_loader):
         model.train()
         for batch_n, (images, labels) in enumerate(train_loader):
             labels = one_hot_labels(labels, n_classes)
+            images = images.to(device)
+            labels = labels.to(device)
 
             reconstructed_images, mu, log_var = model(images, labels)
             loss = model.loss_function(reconstructed_images, images, mu, log_var)
@@ -37,7 +39,7 @@ def train(model, optimizer, n_epochs, n_classes, train_loader):
 
         model.eval()
         for label in range(n_classes):
-            generated_image = model.generate(label).squeeze(dim=0)
+            generated_image = model.generate(label, device=device).squeeze(dim=0)
             writer.add_image(tag=f'Average image_{label}',
                              img_tensor=generated_image,
                              global_step=epoch)
@@ -46,6 +48,8 @@ def train(model, optimizer, n_epochs, n_classes, train_loader):
 
 
 def main():
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
     parser = ArgumentParser()
     parser.add_argument('--image_path', type=str)
     parser.add_argument('--labels_path', type=str)
@@ -72,7 +76,8 @@ def main():
           optimizer=optimizer,
           n_epochs=args.num_epochs,
           n_classes=args.num_classes,
-          train_loader=train_loader)
+          train_loader=train_loader,
+          device=device)
 
 
 if __name__ == '__main__':
