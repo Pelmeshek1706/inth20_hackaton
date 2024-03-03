@@ -23,6 +23,7 @@ def inference():
                            img_size=args.image_size,
                            device=device)
     model.load_state_dict(model_weights)
+    model.eval()
     img_tensor = model.generate(label=args.cluster, device=device)
 
     if not os.path.exists('inference_results'):
