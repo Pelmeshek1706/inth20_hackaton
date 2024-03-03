@@ -28,11 +28,15 @@ Then we perform clustering procedure using KMeans algorithm. To determine the op
 ### Aggregating images within each cluster
 To perform image aggregation we fit Conditional VAE model. CVAE is used to obtain latent distribution from which we can sample zero vector dependent on given cluster label.<br><br>
 **Cluster 0**<br>
+![image](https://github.com/Pelmeshek1706/inth20_hackaton/assets/94761102/eca764d6-c74a-4e71-affd-bdee75d4e528)
 **Cluster 1**<br>
+![image](https://github.com/Pelmeshek1706/inth20_hackaton/assets/94761102/80dcd5b2-c832-4917-8ed1-ce6660a7e827)
 **Cluster 2**<br>
+![image](https://github.com/Pelmeshek1706/inth20_hackaton/assets/94761102/75385894-eba4-4100-ac12-1cac00555e9e)
 **Cluster 3**<br>
+![image](https://github.com/Pelmeshek1706/inth20_hackaton/assets/94761102/2e602568-56ed-4190-b750-c8c84a1dfc35)
 **Cluster 4**<br>
-
+![image](https://github.com/Pelmeshek1706/inth20_hackaton/assets/94761102/0858f8f7-ca8e-494d-aad6-1f36d9828021)
 
 ## Usage guide
 
