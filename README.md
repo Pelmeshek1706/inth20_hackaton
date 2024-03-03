@@ -4,6 +4,15 @@ Made by **XDBoobs team** for **INT20H**
 **Main task: face clustering and aggregating images within each cluster**<br>
 Train dataset: [IMDB-WIKI dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
 
+## Table of contents
+- [General pipeline overview](#general-pipeline-overview)
+- [Usage guide](#usage-guide)
+- - [Face detection pipeline](#face-detection-pipeline)
+- - [Generating embeddings](#generating-embeddings)
+- - [Clustering](#clustering-1)
+- - [Image aggregating using CVAE](#image-aggregating-using-cvae)
+- [Team members](#team-members)
+
 ## General pipeline overview
 
 ### Face detection
@@ -117,3 +126,20 @@ python cvae_inference.py [OPTIONS]
 > | `image_size`  | Optional | 224                      | Resolution of the generated image           |
 
 Aggregated image will be saved to the `inference_results` folder.
+
+## Team members
+
+### Team lead
+[Github](https://github.com/Pelmeshek1706)
+[Telegram](https://t.me/pelmeshek1706)
+
+[LinkedIn](https://www.linkedin.com/in/nikita-basenko/)
+### The guy who hates Tensorflow
+[Github](https://github.com/poopaandloopa)
+[Telegram](https://t.me/poopaandloopa)
+[LinkedIn](https://www.linkedin.com/in/andrii-krasnyh-a4828a205/)
+
+### The guy who hates PyTorch
+[Github](https://github.com/poluidol2)
+[Telegram](https://t.me/poluidol)
+[Telegram](https://t.me/poluidol)
