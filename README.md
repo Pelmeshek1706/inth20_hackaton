@@ -18,7 +18,7 @@ Then we perform clustering procedure using KMeans algorithm. To determine the op
 <img src="./assets/cluster_samples/cluster_1.jpg" alt="cluster_1" width="400"/><br>
 **Cluster 1 - Woman**<br>
 <img src="./assets/cluster_samples/cluster_2.jpg" alt="cluster_2" width="400"/><br>
-**Cluster 2 - African**<br>
+**Cluster 2 - Darker-skinned people**<br>
 <img src="./assets/cluster_samples/cluster_3.jpg" alt="cluster_3" width="400"/><br>
 **Cluster 3 - Old-age man**<br>
 <img src="./assets/cluster_samples/cluster_5.jpg" alt="cluster_5" width="400"/><br>
