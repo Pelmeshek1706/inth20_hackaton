@@ -1,24 +1,41 @@
-# inth20_hackaton
-# Made by **XDBoobs team** for **int20h** 
+# INT20H Hackathon (Data Science)
+Made by **XDBoobs team** for **INT20H** 
 
-## Main task : generate mean person for each cluster from [dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
+**Main task: face clustering and aggregating images within each cluster**<br>
+Train dataset: [IMDB-WIKI dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
 
+## General pipeline overview
 
-<!-- 
-### That we get at the start point: 
-images with faces
-// 5 pics from dataset
-### That we generate -->
+### Face detection
+We use ready-made solution from OpenCV for face detection and cropping. We set `minNeighbors` parameter to 45 to reduce the number of false positive instances and get more accurate face pictures.
 
-### At first - decompose the task
-- First step: [Face detection](link for demo.ipynb)
-    We using ready-made solution from [OpenCV](https://www.datacamp.com/tutorial/face-detection-python-opencv) for Face-recognition and after processing our data we recieve ~8.4k cropped images.
-    Folder -> Folder
-- Second step: [Vector Embeddings](link pic2vec.py)
-    Taking our directory with cropped images and vectorize it to 2048 dimensional using [VGGFace](https://github.com/YaleDHLab/vggface) 
-    Folder -> SCV file
-- Third Step: [Clustering](link for kmeans.py)
-    We looked at the informativeness of the clusters and by long logical reasoning we came up with 7 clusters 
-    (pics from t for this clusters)
-- Generating mean person from each cluster : [cvae.py](link for cvae)
-    ///здесь что-то про СВАЕ я не знаю 
+### Generating vector representations from cropped images
+We use [VGGFace model](https://github.com/YaleDHLab/vggface) with ResNet50 backbone to generate 2048-dimensional image embeddings. This step is done to extract informative features before clustering the images.
+
+### Clustering
+Then we perform clustering procedure using KMeans algorithm. To determine the optimal number of clusters, we carefully analyze the output of the clustering algorithm. Below you can see the resulting clusters with a general description of each:<br><br>
+**Cluster 0**<br>
+<img src="./assets/cluster_samples/cluster_0.jpg" alt="cluster_0" width="400"/><br>
+**Cluster 1**<br>
+<img src="./assets/cluster_samples/cluster_1.jpg" alt="cluster_1" width="400"/><br>
+**Cluster 2**<br>
+<img src="./assets/cluster_samples/cluster_2.jpg" alt="cluster_2" width="400"/><br>
+**Cluster 3**<br>
+<img src="./assets/cluster_samples/cluster_3.jpg" alt="cluster_3" width="400"/><br>
+**Cluster 4**<br>
+<img src="./assets/cluster_samples/cluster_4.jpg" alt="cluster_4" width="400"/><br>
+**Cluster 5**<br>
+<img src="./assets/cluster_samples/cluster_5.jpg" alt="cluster_5" width="400"/><br>
+**Cluster 6**<br>
+<img src="./assets/cluster_samples/cluster_6.jpg" alt="cluster_6" width="400"/><br>
+
+### Aggregating images within each cluster
+To perform image aggregation we fit Conditional VAE model. CVAE is used to obtain latent distribution from which we can sample zero vector dependent on given cluster label.<br><br>
+**Cluster 0**<br>
+**Cluster 1**<br>
+**Cluster 2**<br>
+**Cluster 3**<br>
+**Cluster 4**<br>
+**Cluster 5**<br>
+**Cluster 6**<br>
+
