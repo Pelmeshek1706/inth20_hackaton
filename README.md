@@ -15,7 +15,7 @@ We use [VGGFace model](https://github.com/YaleDHLab/vggface) with ResNet50 backb
 ### Clustering
 Then we perform clustering procedure using KMeans algorithm. To determine the optimal number of clusters, we carefully analyze the output of the clustering algorithm. Below you can see the resulting clusters with a general description of each:<br><br>
 **Cluster 0 - Old-age man**<br>
-<img src="./assets/cluster_samples/cluster_5.jpg" alt="cluster_0" width="400"/><br>
+<img src="./assets/cluster_samples/cluster_0.jpg" alt="cluster_0" width="400"/><br>
 **Cluster 1 - Asian**<br>
 <img src="./assets/cluster_samples/cluster_1.jpg" alt="cluster_1" width="400"/><br>
 **Cluster 2 - Woman**<br>
@@ -23,7 +23,7 @@ Then we perform clustering procedure using KMeans algorithm. To determine the op
 **Cluster 3 - Darker-skinned people**<br>
 <img src="./assets/cluster_samples/cluster_3.jpg" alt="cluster_3" width="400"/><br>
 **Cluster 4 - Young Man**<br>
-<img src="./assets/cluster_samples/cluster_6.jpg" alt="cluster_4" width="400"/><br>
+<img src="./assets/cluster_samples/cluster_4.jpg" alt="cluster_4" width="400"/><br>
 
 ### Aggregating images within each cluster
 To perform image aggregation we fit Conditional VAE model. CVAE is used to obtain latent distribution from which we can sample zero vector dependent on given cluster label.<br><br>
