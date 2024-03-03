@@ -11,7 +11,7 @@ def inference():
     parser = ArgumentParser()
     parser.add_argument('--cluster', type=int)
     parser.add_argument('--weights', type=str, required=False, default='weights/cvae_epoch_8.pt')
-    parser.add_argument('--num_classes', type=int, required=False, default=7)
+    parser.add_argument('--num_classes', type=int, required=False, default=5)
     parser.add_argument('--image_size', type=int, required=False, default=224)
     args = parser.parse_args()
 
