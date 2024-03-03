@@ -39,3 +39,83 @@ To perform image aggregation we fit Conditional VAE model. CVAE is used to obtai
 **Cluster 5**<br>
 **Cluster 6**<br>
 
+
+## Usage guide
+
+Python version: 3.10
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Pelmeshek1706/inth20_hackaton.git
+```
+
+2. Install all necessary packages:
+```bash
+pip install --no-cache-dir -r requirements.txt
+```
+
+### Face detection pipeline
+To perform face detection and cropping pipeline run the following script:
+```bash
+python image_preprocessing.py --directory <path/to/directory/with/images>
+```
+
+All cropped images will be saved to the `temp` folder.
+
+### Generating embeddings
+To generate embeddings for cropped images use the following script:
+```bash
+python pic2vec.py [OPTIONS]
+```
+You may provide the following options for this script:
+
+> | Key            | Type     | Default              | Description                                     |
+> |----------------|----------|----------------------|-------------------------------------------------|
+> | `image_folder` | Optional | `temp`               | Path to folder with cropped images              |
+> | `csv_name`     | Optional | `image_features.csv` | Path to the CSV file to save results            |
+> | `model_name`   | Optional | `resnet50`           | Name of the feature extractor/embedding model   |
+
+This script generates CSV file with names of the images and obtained embeddings.
+
+### Clustering
+To perform KMeans clustering on generated embeddings run this script:
+```bash
+python clustering.py [OPTIONS]
+```
+
+> | Key               | Type     | Default               | Description                                          |
+> |-------------------|----------|-----------------------|------------------------------------------------------|
+> | `embeddings_path` | Required |                       | Path to the CSV files with obtained image embeddings |
+> | `num_clusters`    | Required |                       | Number of clusters to form                           |
+> | `output_csv`      | Optional | `cluster_results.csv` | Output file to save clustering results               |
+
+This script generates CSV file with names of the cropped images and cluster labels.
+
+### Image aggregating using CVAE
+To fit CVAE on clustered images use the following script:
+```bash
+python train_cvae.py [OPTIONS]
+```
+
+> | Key           | Type     | Default | Description                                             |
+> |---------------|----------|---------|---------------------------------------------------------|
+> | `image_path`  | Required |         | Path to the folder with cropped images                  |
+> | `labels_path` | Required |         | Path to csv file with predicted clusters for each image |
+> | `num_classes` | Required |         | Number of clusters                                      |
+> | `image_size`  | Optional | 224     | Resolution of train images                              |
+> | `batch_size`  | Optional | 32      | Batch size for training                                 |
+> | `num_epochs`  | Optional | 50      | Number of epochs to train CVAE for                      |
+
+To run CVAE inference use this script that generates aggregated face image for the specified cluster:
+```bash
+python cvae_inference.py [OPTIONS]
+```
+
+> | Key           | Type     | Default                  | Description                                 |
+> |---------------|----------|--------------------------|---------------------------------------------|
+> | `cluster`     | Required |                          | Cluster number to generate aggregated image |
+> | `weights`     | Optional | weights/cvae_epoch_21.pt | Path to the file with trained model weights |
+> | `num_classes` | Optional | 7                        | Total number of clusters                    |
+> | `image_size`  | Optional | 224                      | Resolution of the generated image           |
+
+Aggregated image will be saved to the `inference_results` folder.
